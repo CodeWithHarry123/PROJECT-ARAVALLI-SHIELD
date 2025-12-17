@@ -24,7 +24,7 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-    <!-- Language Toggle (Fixed Top Right - Improved) -->
+    <!-- Language Toggle -->
     <div class="fixed top-4 right-4 z-50 flex items-center bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
         <span class="text-sm font-bold mr-3 text-gray-700 cursor-pointer" onclick="document.getElementById('langToggle').checked = false; document.getElementById('langToggle').dispatchEvent(new Event('change'));">हिंदी</span>
         
@@ -37,7 +37,7 @@
     </div>
 
     <!-- Hero Section -->
-    <header class="bg-pattern text-white min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
+    <header class="bg-pattern text-white min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden pb-20">
         <div class="absolute inset-0 bg-black opacity-60"></div>
         <div class="relative z-10 max-w-4xl">
             <div class="inline-block mb-6">
@@ -69,6 +69,45 @@
             </p>
         </div>
     </header>
+
+    <!-- 🔴 NEW LOCATION: AI Cinematic Video Section (Moved to Top) 🔴 -->
+    <section id="video-section" class="bg-black py-16 px-4 border-b border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10">
+                <h3 id="video-title" class="text-3xl md:text-5xl font-bold text-white mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600 animate-pulse">
+                    AI द्वारा निर्मित भविष्य (2040)
+                </h3>
+                <p id="video-desc" class="text-gray-400 max-w-2xl mx-auto text-lg">
+                    देखिए यह विस्तृत वीडियो सिमुलेशन जो दिखाता है कि कैसे सुरक्षा हटने के बाद रेत के तूफान हमारे शहरों को ढक लेंगे।
+                </p>
+            </div>
+
+            <!-- Video Player Container (Safe Autoplay) -->
+            <div class="relative w-full max-w-4xl mx-auto aspect-video bg-gray-900 rounded-xl overflow-hidden border-2 border-gray-700 shadow-[0_0_50px_rgba(234,88,12,0.2)]">
+                
+                <!-- 
+                    🔴🔴🔴 VIDEO LINK COMMENT 🔴🔴🔴 
+                    नीचे दिए गए <video> टैग में src="..." के अंदर अपने वीडियो का लिंक डालें।
+                    Autoplay JS se handle hoga taaki error na aaye.
+                -->
+                <video 
+                    id="mainVideo"
+                    class="w-full h-full object-cover" 
+                    muted 
+                    loop 
+                    playsinline 
+                    controls
+                    poster="https://images.unsplash.com/photo-1509114397022-ed747cca3f65?q=80&w=1935&auto=format&fit=crop"
+                >
+                    <!-- YAHAN LINK DALEIN -->
+                    <source src="simulation_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+             <p id="video-note" class="text-center text-sm text-gray-500 mt-6 tracking-wider uppercase font-bold"><i class="fas fa-robot mr-2"></i>AI जनित विज़ुअलाइज़ेशन</p>
+        </div>
+    </section>
 
     <!-- Evidence Section -->
     <section id="evidence" class="py-20 px-4 bg-white">
@@ -103,19 +142,16 @@
                 </div>
             </div>
 
-            <!-- NEW: Satellite Map Section for the Screenshot -->
+            <!-- Satellite Map Section -->
             <div class="bg-white p-4 md:p-8 rounded-2xl shadow-lg border border-gray-200 mb-16">
                 <h3 id="map-title" class="text-2xl font-bold mb-6 text-gray-800 text-center"><i class="fas fa-map-marked-alt text-purple-600 mr-2"></i> उपग्रह मानचित्र विश्लेषण (Impact Map)</h3>
                 
                 <div class="relative w-full h-auto min-h-[300px] md:min-h-[500px] bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center border border-gray-300">
-                    <!-- Placeholder text if image is missing -->
                     <div class="absolute inset-0 flex flex-col items-center justify-center z-0 text-center p-4">
                         <i class="fas fa-image text-5xl text-gray-400 mb-3"></i>
                         <p class="text-gray-500 font-bold">Map image not found.</p>
                         <p class="text-gray-400 text-sm">Please rename your screenshot file to <strong>impact_map.jpg</strong></p>
                     </div>
-                    
-                    <!-- The Screenshot Image -->
                     <img src="impact_map.jpg" alt="Aravalli Impact Analysis Map" class="w-full h-full object-contain relative z-10" onerror="this.style.display='none'">
                 </div>
                 
@@ -125,8 +161,8 @@
                 </p>
             </div>
 
-            <!-- Simulation Context -->
-            <div class="mt-16 bg-gray-900 text-white p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+            <!-- Simulation Context (GIF/Image) -->
+            <div class="mt-16 bg-gray-900 text-white p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden mb-16">
                 <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-red-600 rounded-full opacity-20 blur-3xl"></div>
                 <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
                     <div>
@@ -141,16 +177,17 @@
                         </ul>
                     </div>
                     
-                    <!-- Image Container -->
-                    <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 h-64 md:h-80 flex items-center justify-center relative">
+                    <!-- GIF Container -->
+                    <div class="bg-gray-800 rounded-xl overflow-hidden border-4 border-gray-700 h-64 md:h-80 flex items-center justify-center relative shadow-2xl">
                         <div class="absolute inset-0 flex flex-col items-center justify-center z-0 text-center p-4">
                             <i class="fas fa-film text-4xl text-gray-600 mb-2"></i>
-                            <p class="text-gray-500 text-sm">Animation not found.<br>Make sure file is named <strong>simulation.gif</strong></p>
+                            <p class="text-gray-500 text-sm">Simulation Loading...<br>Looking for <strong>simulation.gif</strong></p>
                         </div>
                         <img src="simulation.gif" alt="Desertification Simulation" class="w-full h-full object-cover relative z-10" onerror="this.style.display='none'"> 
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -161,13 +198,17 @@
             <p id="footer-desc" class="text-gray-400 mb-8">सच्चाई को फैलाएं। डेटा झूठ नहीं बोलता।</p>
             
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://twitter.com/intent/tweet?text=The%20new%20100m%20rule%20kills%2089%25%20of%20Aravalli%20Hills.%20%23SaveAravalli%20%23SupremeCourt&url=https://savearavalli.in" target="_blank" class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg transition flex items-center">
+                <!-- Twitter Share -->
+                <a href="https://twitter.com/intent/tweet?text=The%20new%20100m%20rule%20kills%2089%25%20of%20Aravalli%20Hills.%20%23SaveAravalli%20%23SupremeCourt&url=https://codewithharry123.github.io/PROJECT-ARAVALLI-SHIELD/" target="_blank" class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg transition flex items-center shadow-lg transform hover:-translate-y-1">
                     <i class="fab fa-twitter mr-2"></i> <span id="btn-tweet">ट्वीट करें</span>
                 </a>
-                <a href="https://wa.me/?text=Aravalli%20is%20in%20danger!%2089%25%20hills%20lost.%20See%20proof:%20https://savearavalli.in" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center">
+                
+                <!-- WhatsApp Share -->
+                <a href="https://wa.me/?text=Aravalli%20is%20in%20danger!%2089%25%20hills%20lost.%20See%20proof:%20https://codewithharry123.github.io/PROJECT-ARAVALLI-SHIELD/" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center shadow-lg transform hover:-translate-y-1">
                     <i class="fab fa-whatsapp mr-2"></i> <span id="btn-whatsapp">व्हाट्सएप शेयर</span>
                 </a>
-                <button onclick="sendEmail()" class="bg-white text-gray-900 hover:bg-gray-200 font-bold py-3 px-6 rounded-lg transition flex items-center">
+                
+                <button onclick="sendEmail()" class="bg-white text-gray-900 hover:bg-gray-200 font-bold py-3 px-6 rounded-lg transition flex items-center shadow-lg transform hover:-translate-y-1">
                     <i class="fas fa-envelope mr-2"></i> <span id="btn-email-footer">CJI को फिर ईमेल करें</span>
                 </button>
             </div>
@@ -204,6 +245,9 @@
                 simPt1: 'धूल भरी आंधियां बढ़ेंगी (PM 2.5)',
                 simPt2: 'वन्यजीवों का घर उजड़ जाएगा',
                 simPt3: 'तापमान में भारी बढ़ोतरी होगी',
+                videoTitle: 'AI द्वारा निर्मित भविष्य (2040)',
+                videoDesc: 'देखिए यह विस्तृत वीडियो सिमुलेशन जो दिखाता है कि कैसे सुरक्षा हटने के बाद रेत के तूफान हमारे शहरों को ढक लेंगे।',
+                videoNote: '<i class="fas fa-robot mr-2"></i>AI जनित विज़ुअलाइज़ेशन',
                 footerTitle: 'दिल्ली को रेगिस्तान मत बनने दो',
                 footerDesc: 'सच्चाई को फैलाएं। डेटा झूठ नहीं बोलता।',
                 btnTweet: 'ट्वीट करें',
@@ -236,6 +280,9 @@
                 simPt1: 'Increased Dust Storms (PM 2.5)',
                 simPt2: 'Loss of Wildlife Corridors',
                 simPt3: 'Irreversible Temperature Rise',
+                videoTitle: 'AI Forecast: The 2040 Vision',
+                videoDesc: 'Watch this detailed video simulation showing how sandstorms will engulf our cities after the protection is removed.',
+                videoNote: '<i class="fas fa-robot mr-2"></i>AI Generated Visualization',
                 footerTitle: "Don't Let Them Turn Delhi Into a Desert",
                 footerDesc: "Share the truth. The data doesn't lie.",
                 btnTweet: 'Tweet This',
@@ -282,6 +329,10 @@
             document.getElementById('sim-pt2').innerText = t.simPt2;
             document.getElementById('sim-pt3').innerText = t.simPt3;
             
+            document.getElementById('video-title').innerText = t.videoTitle;
+            document.getElementById('video-desc').innerText = t.videoDesc;
+            document.getElementById('video-note').innerHTML = t.videoNote;
+
             document.getElementById('footer-title').innerText = t.footerTitle;
             document.getElementById('footer-desc').innerText = t.footerDesc;
             document.getElementById('btn-tweet').innerText = t.btnTweet;
@@ -310,59 +361,77 @@
 
         // --- CHART GENERATION ---
         
-        // Chart 1: Protection Loss
-        const ctxProtection = document.getElementById('protectionChart').getContext('2d');
-        protectionChart = new Chart(ctxProtection, {
-            type: 'doughnut',
-            data: {
-                labels: content['hi'].chartLabels.c1,
-                datasets: [{
-                    data: [89.27, 10.73],
-                    backgroundColor: ['#ef4444', '#22c55e'], 
-                    borderWidth: 0,
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom', labels: { font: { family: 'Mukta' } } }
-                }
+        // Ensure Chart.js is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Video Autoplay Safe-Check
+            const video = document.getElementById('mainVideo');
+            if(video) {
+                video.play().catch(error => {
+                    console.log("Video autoplay prevented by browser policy (normal behavior):", error);
+                    // No UI change needed, controls are visible
+                });
             }
-        });
 
-        // Chart 2: Water Crisis
-        const ctxWater = document.getElementById('waterChart').getContext('2d');
-        waterChart = new Chart(ctxWater, {
-            type: 'line',
-            data: {
-                labels: ['2025', '2027', '2029', '2031', '2033', '2035'],
-                datasets: [{
-                    label: content['hi'].chartLabels.c2,
-                    data: [30, 35, 42, 55, 70, 95],
-                    borderColor: '#3b82f6',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: '#fff',
-                    pointBorderColor: '#3b82f6'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        reverse: true,
-                        title: { display: true, text: 'Depth (m)' }
-                    }
-                },
-                plugins: {
-                    legend: { display: false }
-                }
+            if (typeof Chart === 'undefined') {
+                console.error("Chart.js not loaded");
+                return;
             }
+
+            // Chart 1: Protection Loss
+            const ctxProtection = document.getElementById('protectionChart').getContext('2d');
+            protectionChart = new Chart(ctxProtection, {
+                type: 'doughnut',
+                data: {
+                    labels: content['hi'].chartLabels.c1,
+                    datasets: [{
+                        data: [89.27, 10.73],
+                        backgroundColor: ['#ef4444', '#22c55e'], 
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { family: 'Mukta' } } }
+                    }
+                }
+            });
+
+            // Chart 2: Water Crisis
+            const ctxWater = document.getElementById('waterChart').getContext('2d');
+            waterChart = new Chart(ctxWater, {
+                type: 'line',
+                data: {
+                    labels: ['2025', '2027', '2029', '2031', '2033', '2035'],
+                    datasets: [{
+                        label: content['hi'].chartLabels.c2,
+                        data: [30, 35, 42, 55, 70, 95],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#3b82f6'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            reverse: true,
+                            title: { display: true, text: 'Depth (m)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
         });
 
         // --- UTILITY ---
