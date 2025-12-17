@@ -82,27 +82,21 @@
                 </p>
             </div>
 
-            <!-- Video Player Container (Safe Autoplay) -->
+            <!-- Video Player Container (Vimeo Embed) -->
             <div class="relative w-full max-w-4xl mx-auto aspect-video bg-gray-900 rounded-xl overflow-hidden border-2 border-gray-700 shadow-[0_0_50px_rgba(234,88,12,0.2)]">
                 
                 <!-- 
-                    🔴🔴🔴 VIDEO LINK COMMENT 🔴🔴🔴 
-                    नीचे दिए गए <video> टैग में src="..." के अंदर अपने वीडियो का लिंक डालें।
-                    Autoplay JS se handle hoga taaki error na aaye.
+                    🔴 VIMEO EMBED 🔴 
+                    Note: 'autoplay=1' enables autoplay, 'muted=1' is required for autoplay in most browsers.
+                    'loop=1' loops the video.
                 -->
-                <video 
-                    id="mainVideo"
-                    class="w-full h-full object-cover" 
-                    muted 
-                    loop 
-                    playsinline 
-                    controls
-                    poster="https://images.unsplash.com/photo-1509114397022-ed747cca3f65?q=80&w=1935&auto=format&fit=crop"
-                >
-                    <!-- YAHAN LINK DALEIN -->
-                    <source src="simulation_video.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe 
+                    src="https://player.vimeo.com/video/1147444451?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1&loop=1&muted=1" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
+                    class="absolute top-0 left-0 w-full h-full" 
+                    title="Aravalli Impact Simulation">
+                </iframe>
 
             </div>
              <p id="video-note" class="text-center text-sm text-gray-500 mt-6 tracking-wider uppercase font-bold"><i class="fas fa-robot mr-2"></i>AI जनित विज़ुअलाइज़ेशन</p>
@@ -364,14 +358,14 @@
         // Ensure Chart.js is loaded
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Video Autoplay Safe-Check
-            const video = document.getElementById('mainVideo');
-            if(video) {
-                video.play().catch(error => {
-                    console.log("Video autoplay prevented by browser policy (normal behavior):", error);
-                    // No UI change needed, controls are visible
-                });
-            }
+            // Video Autoplay Safe-Check - REMOVED since we are using iframe now
+            // const video = document.getElementById('mainVideo');
+            // if(video) {
+            //     video.play().catch(error => {
+            //         console.log("Video autoplay prevented by browser policy (normal behavior):", error);
+            //         // No UI change needed, controls are visible
+            //     });
+            // }
 
             if (typeof Chart === 'undefined') {
                 console.error("Chart.js not loaded");
