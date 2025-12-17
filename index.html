@@ -20,26 +20,20 @@
             height: 300px;
             width: 100%;
         }
-        /* Toggle Switch */
-        .toggle-checkbox:checked {
-            right: 0;
-            border-color: #68D391;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #68D391;
-        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-    <!-- Language Toggle (Fixed Top Right) -->
-    <div class="fixed top-4 right-4 z-50 flex items-center bg-white px-3 py-2 rounded-full shadow-lg border border-gray-200">
-        <span class="text-xs font-bold mr-2 text-gray-600">हिंदी</span>
-        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-            <input type="checkbox" name="toggle" id="langToggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 left-0 transition-all duration-300"/>
-            <label for="langToggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"></label>
-        </div>
-        <span class="text-xs font-bold text-gray-600">ENG</span>
+    <!-- Language Toggle (Fixed Top Right - Improved) -->
+    <div class="fixed top-4 right-4 z-50 flex items-center bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
+        <span class="text-sm font-bold mr-3 text-gray-700 cursor-pointer" onclick="document.getElementById('langToggle').checked = false; document.getElementById('langToggle').dispatchEvent(new Event('change'));">हिंदी</span>
+        
+        <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="langToggle" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+        </label>
+        
+        <span class="text-sm font-bold ml-3 text-gray-700 cursor-pointer" onclick="document.getElementById('langToggle').checked = true; document.getElementById('langToggle').dispatchEvent(new Event('change'));">ENG</span>
     </div>
 
     <!-- Hero Section -->
