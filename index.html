@@ -82,7 +82,7 @@
             <h2 id="evidence-title" class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900">वैज्ञानिक सच्चाई क्या है?</h2>
             <p id="evidence-desc" class="text-center text-gray-500 mb-16 max-w-2xl mx-auto">हमने सैटेलाइट डेटा का उपयोग करके नई परिभाषा के असर का विश्लेषण किया। परिणाम भयानक हैं।</p>
             
-            <div class="grid md:grid-cols-2 gap-12 items-start">
+            <div class="grid md:grid-cols-2 gap-12 items-start mb-12">
                 
                 <!-- Chart 1 -->
                 <div class="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100">
@@ -109,6 +109,28 @@
                 </div>
             </div>
 
+            <!-- NEW: Satellite Map Section for the Screenshot -->
+            <div class="bg-white p-4 md:p-8 rounded-2xl shadow-lg border border-gray-200 mb-16">
+                <h3 id="map-title" class="text-2xl font-bold mb-6 text-gray-800 text-center"><i class="fas fa-map-marked-alt text-purple-600 mr-2"></i> उपग्रह मानचित्र विश्लेषण (Impact Map)</h3>
+                
+                <div class="relative w-full h-auto min-h-[300px] md:min-h-[500px] bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center border border-gray-300">
+                    <!-- Placeholder text if image is missing -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center z-0 text-center p-4">
+                        <i class="fas fa-image text-5xl text-gray-400 mb-3"></i>
+                        <p class="text-gray-500 font-bold">Map image not found.</p>
+                        <p class="text-gray-400 text-sm">Please rename your screenshot file to <strong>impact_map.jpg</strong></p>
+                    </div>
+                    
+                    <!-- The Screenshot Image -->
+                    <img src="impact_map.jpg" alt="Aravalli Impact Analysis Map" class="w-full h-full object-contain relative z-10" onerror="this.style.display='none'">
+                </div>
+                
+                <p id="map-legend" class="text-center text-sm text-gray-600 mt-4 bg-gray-50 p-3 rounded-lg inline-block mx-auto w-full">
+                    <span class="inline-flex items-center mx-2"><span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span><strong class="text-red-600">लाल क्षेत्र (Red Zone):</strong> सुरक्षा खो चुकी पहाड़ियाँ</span>
+                    <span class="inline-flex items-center mx-2"><span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span><strong class="text-green-600">हरा क्षेत्र (Green Zone):</strong> सुरक्षित पहाड़ियाँ</span>
+                </p>
+            </div>
+
             <!-- Simulation Context -->
             <div class="mt-16 bg-gray-900 text-white p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
                 <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-red-600 rounded-full opacity-20 blur-3xl"></div>
@@ -128,8 +150,8 @@
                     <!-- Image Container -->
                     <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 h-64 md:h-80 flex items-center justify-center relative">
                         <div class="absolute inset-0 flex flex-col items-center justify-center z-0 text-center p-4">
-                            <i class="fas fa-image text-4xl text-gray-600 mb-2"></i>
-                            <p class="text-gray-500 text-sm">Image not found.<br>Make sure file is named <strong>simulation.gif</strong></p>
+                            <i class="fas fa-film text-4xl text-gray-600 mb-2"></i>
+                            <p class="text-gray-500 text-sm">Animation not found.<br>Make sure file is named <strong>simulation.gif</strong></p>
                         </div>
                         <img src="simulation.gif" alt="Desertification Simulation" class="w-full h-full object-cover relative z-10" onerror="this.style.display='none'"> 
                     </div>
@@ -181,6 +203,8 @@
                 chart2Title: '<i class="fas fa-tint text-blue-500 mr-2"></i> जल संकट (Water Crisis)',
                 chart2Desc: 'पहाड़ हटने पर 2035 तक भूजल स्तर।',
                 chart2Verdict: 'निष्कर्ष: 2035 तक जमीन का पानी पूरी तरह सूख सकता है।',
+                mapTitle: '<i class="fas fa-map-marked-alt text-purple-600 mr-2"></i> उपग्रह मानचित्र विश्लेषण (Impact Map)',
+                mapLegend: '<span class="inline-flex items-center mx-2"><span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span><strong class="text-red-600">लाल क्षेत्र (Red Zone):</strong> सुरक्षा खो चुकी पहाड़ियाँ</span> <span class="inline-flex items-center mx-2"><span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span><strong class="text-green-600">हरा क्षेत्र (Green Zone):</strong> सुरक्षित पहाड़ियाँ</span>',
                 simTitle: "'ग्रीन वॉल' ढह रही है",
                 simDesc: 'अरावली ही वो दीवार है जो थार रेगिस्तान को रोकती है। हमारे AI सिमुलेशन दिखाते हैं कि छोटी पहाड़ियाँ (30m-90m) हटाने पर धूल भरी आंधियां (Dust Storms) सीधे दिल्ली-NCR और राजस्थान के खेतों में पहुंचेंगी।',
                 simPt1: 'धूल भरी आंधियां बढ़ेंगी (PM 2.5)',
@@ -211,6 +235,8 @@
                 chart2Title: '<i class="fas fa-tint text-blue-500 mr-2"></i> Water Crisis Forecast',
                 chart2Desc: 'Projected groundwater depth if hills are flattened.',
                 chart2Verdict: 'VERDICT: Aquifers may run dry by 2035.',
+                mapTitle: '<i class="fas fa-map-marked-alt text-purple-600 mr-2"></i> Satellite Map Analysis',
+                mapLegend: '<span class="inline-flex items-center mx-2"><span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span><strong class="text-red-600">Red Zone:</strong> Hills losing protection</span> <span class="inline-flex items-center mx-2"><span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span><strong class="text-green-600">Green Zone:</strong> Protected hills</span>',
                 simTitle: 'The "Green Wall" is Crumbling',
                 simDesc: 'The Aravalli range is the only barrier stopping the Thar Desert. Our AI simulations show that removing the smaller hills (30m-90m) creates "Wind Tunnels" that accelerate dust storms into Delhi-NCR.',
                 simPt1: 'Increased Dust Storms (PM 2.5)',
@@ -253,6 +279,9 @@
             document.getElementById('chart2-desc').innerText = t.chart2Desc;
             document.getElementById('chart2-verdict').innerText = t.chart2Verdict;
             
+            document.getElementById('map-title').innerHTML = t.mapTitle;
+            document.getElementById('map-legend').innerHTML = t.mapLegend;
+
             document.getElementById('sim-title').innerText = t.simTitle;
             document.getElementById('sim-desc').innerText = t.simDesc;
             document.getElementById('sim-pt1').innerText = t.simPt1;
