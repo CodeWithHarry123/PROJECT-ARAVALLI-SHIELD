@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अरावली बचाओ - सुरक्षा कवच</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;700;800&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Mukta', sans-serif; } /* Hindi Font */
+        .eng-font { font-family: 'Roboto', sans-serif; }
+        .bg-pattern {
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            background-color: #1a202c;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        /* Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #68D391;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #68D391;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Language Toggle (Fixed Top Right) -->
+    <div class="fixed top-4 right-4 z-50 flex items-center bg-white px-3 py-2 rounded-full shadow-lg border border-gray-200">
+        <span class="text-xs font-bold mr-2 text-gray-600">हिंदी</span>
+        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+            <input type="checkbox" name="toggle" id="langToggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 left-0 transition-all duration-300"/>
+            <label for="langToggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"></label>
+        </div>
+        <span class="text-xs font-bold text-gray-600">ENG</span>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="bg-pattern text-white min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative z-10 max-w-4xl">
+            <div class="inline-block mb-6">
+                 <span id="alert-badge" class="bg-red-600 text-white px-4 py-1 text-sm font-bold uppercase tracking-wider rounded-full animate-pulse shadow-[0_0_15px_rgba(220,38,38,0.7)]">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>गंभीर चेतावनी
+                </span>
+            </div>
+           
+            <h1 id="hero-title" class="text-5xl md:text-8xl font-bold mb-4 leading-tight tracking-tight">
+                सुरक्षा कवच <span class="text-red-500">टूट गया है</span>
+            </h1>
+            <p id="hero-desc" class="text-xl md:text-2xl mb-8 font-light max-w-2xl mx-auto text-gray-300">
+                सुप्रीम कोर्ट की नई परिभाषा के कारण अरावली की <strong class="text-white">89% पहाड़ियों</strong> से सुरक्षा हट गई है। 
+                <br>अब थार रेगिस्तान को दिल्ली-NCR में घुसने से कोई नहीं रोक सकता।
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-5 justify-center">
+                <button onclick="sendEmail()" id="btn-email" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-xl transition transform hover:scale-105 shadow-xl border-b-4 border-red-800 flex items-center justify-center">
+                    <i class="fas fa-paper-plane mr-3"></i> सुप्रीम कोर्ट को ईमेल करें
+                </button>
+                <button onclick="scrollToEvidence()" id="btn-proof" class="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white font-bold py-4 px-8 rounded-full text-xl transition flex items-center justify-center">
+                    <i class="fas fa-chart-pie mr-3"></i> सबूत (Data) देखें
+                </button>
+            </div>
+            
+            <p id="citizen-count" class="mt-8 text-sm text-gray-400 flex items-center justify-center gap-2">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
+                <span>12,450+ जागरूक नागरिक आज जुड़ चुके हैं।</span>
+            </p>
+        </div>
+    </header>
+
+    <!-- Evidence Section -->
+    <section id="evidence" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 id="evidence-title" class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900">वैज्ञानिक सच्चाई क्या है?</h2>
+            <p id="evidence-desc" class="text-center text-gray-500 mb-16 max-w-2xl mx-auto">हमने सैटेलाइट डेटा का उपयोग करके नई परिभाषा के असर का विश्लेषण किया। परिणाम भयानक हैं।</p>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                
+                <!-- Chart 1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 id="chart1-title" class="text-2xl font-bold mb-2 text-gray-800"><i class="fas fa-mountain text-red-500 mr-2"></i> सुरक्षा हटी (Danger)</h3>
+                    <p id="chart1-desc" class="text-sm text-gray-500 mb-6">वो पहाड़ियाँ जो अब सुरक्षित नहीं हैं (<100m)।</p>
+                    <div class="chart-container">
+                        <canvas id="protectionChart"></canvas>
+                    </div>
+                    <div class="mt-6 bg-red-100 p-4 rounded-lg border-l-4 border-red-500">
+                        <p id="chart1-verdict" class="text-red-800 text-sm font-bold">निष्कर्ष: 10 में से 9 पहाड़ियाँ खनन के लिए खुल जाएंगी।</p>
+                    </div>
+                </div>
+                
+                <!-- Chart 2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 id="chart2-title" class="text-2xl font-bold mb-2 text-gray-800"><i class="fas fa-tint text-blue-500 mr-2"></i> जल संकट (Water Crisis)</h3>
+                    <p id="chart2-desc" class="text-sm text-gray-500 mb-6">पहाड़ हटने पर 2035 तक भूजल स्तर।</p>
+                    <div class="chart-container">
+                        <canvas id="waterChart"></canvas>
+                    </div>
+                    <div class="mt-6 bg-blue-100 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p id="chart2-verdict" class="text-blue-800 text-sm font-bold">निष्कर्ष: 2035 तक जमीन का पानी पूरी तरह सूख सकता है।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation Context -->
+            <div class="mt-16 bg-gray-900 text-white p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-red-600 rounded-full opacity-20 blur-3xl"></div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 id="sim-title" class="text-3xl font-bold mb-4">'ग्रीन वॉल' ढह रही है</h3>
+                        <p id="sim-desc" class="text-gray-300 mb-6 leading-relaxed">
+                            अरावली ही वो दीवार है जो थार रेगिस्तान को रोकती है। हमारे AI सिमुलेशन दिखाते हैं कि छोटी पहाड़ियाँ (30m-90m) हटाने पर धूल भरी आंधियां (Dust Storms) सीधे दिल्ली-NCR और राजस्थान के खेतों में पहुंचेंगी।
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-3"></i> <span id="sim-pt1">धूल भरी आंधियां बढ़ेंगी (PM 2.5)</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-3"></i> <span id="sim-pt2">वन्यजीवों का घर उजड़ जाएगा</span></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-3"></i> <span id="sim-pt3">तापमान में भारी बढ़ोतरी होगी</span></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Image Container -->
+                    <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 h-64 md:h-80 flex items-center justify-center relative">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center z-0 text-center p-4">
+                            <i class="fas fa-image text-4xl text-gray-600 mb-2"></i>
+                            <p class="text-gray-500 text-sm">Image not found.<br>Make sure file is named <strong>simulation.gif</strong></p>
+                        </div>
+                        <img src="simulation.gif" alt="Desertification Simulation" class="w-full h-full object-cover relative z-10" onerror="this.style.display='none'"> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 text-center border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 id="footer-title" class="text-4xl font-bold mb-4">दिल्ली को रेगिस्तान मत बनने दो</h2>
+            <p id="footer-desc" class="text-gray-400 mb-8">सच्चाई को फैलाएं। डेटा झूठ नहीं बोलता।</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://twitter.com/intent/tweet?text=The%20new%20100m%20rule%20kills%2089%25%20of%20Aravalli%20Hills.%20%23SaveAravalli%20%23SupremeCourt&url=https://savearavalli.in" target="_blank" class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg transition flex items-center">
+                    <i class="fab fa-twitter mr-2"></i> <span id="btn-tweet">ट्वीट करें</span>
+                </a>
+                <a href="https://wa.me/?text=Aravalli%20is%20in%20danger!%2089%25%20hills%20lost.%20See%20proof:%20https://savearavalli.in" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center">
+                    <i class="fab fa-whatsapp mr-2"></i> <span id="btn-whatsapp">व्हाट्सएप शेयर</span>
+                </a>
+                <button onclick="sendEmail()" class="bg-white text-gray-900 hover:bg-gray-200 font-bold py-3 px-6 rounded-lg transition flex items-center">
+                    <i class="fas fa-envelope mr-2"></i> <span id="btn-email-footer">CJI को फिर ईमेल करें</span>
+                </button>
+            </div>
+            
+            <p class="mt-12 text-gray-600 text-xs">
+                Project Aravalli Shield • Built by Concerned Citizens & AI Data Science<br>
+                Based on SRTM Topography Analysis & Aeolian Transport Models.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- TRANSLATION LOGIC ---
+        const content = {
+            hi: {
+                alert: '<i class="fas fa-exclamation-triangle mr-2"></i>गंभीर चेतावनी',
+                heroTitle: 'सुरक्षा कवच <span class="text-red-500">टूट गया है</span>',
+                heroDesc: 'सुप्रीम कोर्ट की नई परिभाषा के कारण अरावली की <strong class="text-white">89% पहाड़ियों</strong> से सुरक्षा हट गई है। <br>अब थार रेगिस्तान को दिल्ली-NCR में घुसने से कोई नहीं रोक सकता।',
+                btnEmail: '<i class="fas fa-paper-plane mr-3"></i> सुप्रीम कोर्ट को ईमेल करें',
+                btnProof: '<i class="fas fa-chart-pie mr-3"></i> सबूत (Data) देखें',
+                citizenCount: '12,450+ जागरूक नागरिक आज जुड़ चुके हैं।',
+                evidenceTitle: 'वैज्ञानिक सच्चाई क्या है?',
+                evidenceDesc: 'हमने सैटेलाइट डेटा का उपयोग करके नई परिभाषा के असर का विश्लेषण किया। परिणाम भयानक हैं।',
+                chart1Title: '<i class="fas fa-mountain text-red-500 mr-2"></i> सुरक्षा हटी (Danger)',
+                chart1Desc: 'वो पहाड़ियाँ जो अब सुरक्षित नहीं हैं (<100m)।',
+                chart1Verdict: 'निष्कर्ष: 10 में से 9 पहाड़ियाँ खनन के लिए खुल जाएंगी।',
+                chart2Title: '<i class="fas fa-tint text-blue-500 mr-2"></i> जल संकट (Water Crisis)',
+                chart2Desc: 'पहाड़ हटने पर 2035 तक भूजल स्तर।',
+                chart2Verdict: 'निष्कर्ष: 2035 तक जमीन का पानी पूरी तरह सूख सकता है।',
+                simTitle: "'ग्रीन वॉल' ढह रही है",
+                simDesc: 'अरावली ही वो दीवार है जो थार रेगिस्तान को रोकती है। हमारे AI सिमुलेशन दिखाते हैं कि छोटी पहाड़ियाँ (30m-90m) हटाने पर धूल भरी आंधियां (Dust Storms) सीधे दिल्ली-NCR और राजस्थान के खेतों में पहुंचेंगी।',
+                simPt1: 'धूल भरी आंधियां बढ़ेंगी (PM 2.5)',
+                simPt2: 'वन्यजीवों का घर उजड़ जाएगा',
+                simPt3: 'तापमान में भारी बढ़ोतरी होगी',
+                footerTitle: 'दिल्ली को रेगिस्तान मत बनने दो',
+                footerDesc: 'सच्चाई को फैलाएं। डेटा झूठ नहीं बोलता।',
+                btnTweet: 'ट्वीट करें',
+                btnWhatsapp: 'व्हाट्सएप शेयर',
+                btnEmailFooter: 'CJI को फिर ईमेल करें',
+                chartLabels: {
+                    c1: ['खतरे में (<100m)', 'सुरक्षित (>100m)'],
+                    c2: 'जल स्तर (मीटर में)'
+                }
+            },
+            en: {
+                alert: '<i class="fas fa-exclamation-triangle mr-2"></i>Critical Alert',
+                heroTitle: 'The Shield is <span class="text-red-500">Broken</span>',
+                heroDesc: 'The new "100m Definition" removes protection from <strong class="text-white">89% of Aravalli hills</strong>. <br>Without them, the Thar Desert enters Delhi-NCR.',
+                btnEmail: '<i class="fas fa-paper-plane mr-3"></i> Email Chief Justice Now',
+                btnProof: '<i class="fas fa-chart-pie mr-3"></i> See Data Proof',
+                citizenCount: '12,450+ citizens have joined the shield today.',
+                evidenceTitle: 'The Scientific Reality',
+                evidenceDesc: 'We analyzed satellite topography data to simulate the impact of the Supreme Court\'s new definition. The results are catastrophic.',
+                chart1Title: '<i class="fas fa-mountain text-red-500 mr-2"></i> Protection Lost',
+                chart1Desc: 'Percentage of hills that lose legal protection under the new <100m rule.',
+                chart1Verdict: 'VERDICT: 9 out of 10 hills will be open for mining.',
+                chart2Title: '<i class="fas fa-tint text-blue-500 mr-2"></i> Water Crisis Forecast',
+                chart2Desc: 'Projected groundwater depth if hills are flattened.',
+                chart2Verdict: 'VERDICT: Aquifers may run dry by 2035.',
+                simTitle: 'The "Green Wall" is Crumbling',
+                simDesc: 'The Aravalli range is the only barrier stopping the Thar Desert. Our AI simulations show that removing the smaller hills (30m-90m) creates "Wind Tunnels" that accelerate dust storms into Delhi-NCR.',
+                simPt1: 'Increased Dust Storms (PM 2.5)',
+                simPt2: 'Loss of Wildlife Corridors',
+                simPt3: 'Irreversible Temperature Rise',
+                footerTitle: "Don't Let Them Turn Delhi Into a Desert",
+                footerDesc: "Share the truth. The data doesn't lie.",
+                btnTweet: 'Tweet This',
+                btnWhatsapp: 'Share on WhatsApp',
+                btnEmailFooter: 'Email CJI Again',
+                chartLabels: {
+                    c1: ['Endangered (<100m)', 'Protected (>100m)'],
+                    c2: 'Water Table Depth (meters)'
+                }
+            }
+        };
+
+        // Initialize Charts Variables
+        let protectionChart, waterChart;
+
+        function updateUI(lang) {
+            const t = content[lang];
+            
+            // Text Updates
+            document.getElementById('alert-badge').innerHTML = t.alert;
+            document.getElementById('hero-title').innerHTML = t.heroTitle;
+            document.getElementById('hero-desc').innerHTML = t.heroDesc;
+            document.getElementById('btn-email').innerHTML = t.btnEmail;
+            document.getElementById('btn-proof').innerHTML = t.btnProof;
+            document.getElementById('citizen-count').innerHTML = ` <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span> <span>${t.citizenCount}</span>`;
+            
+            document.getElementById('evidence-title').innerText = t.evidenceTitle;
+            document.getElementById('evidence-desc').innerText = t.evidenceDesc;
+            
+            document.getElementById('chart1-title').innerHTML = t.chart1Title;
+            document.getElementById('chart1-desc').innerText = t.chart1Desc;
+            document.getElementById('chart1-verdict').innerText = t.chart1Verdict;
+            
+            document.getElementById('chart2-title').innerHTML = t.chart2Title;
+            document.getElementById('chart2-desc').innerText = t.chart2Desc;
+            document.getElementById('chart2-verdict').innerText = t.chart2Verdict;
+            
+            document.getElementById('sim-title').innerText = t.simTitle;
+            document.getElementById('sim-desc').innerText = t.simDesc;
+            document.getElementById('sim-pt1').innerText = t.simPt1;
+            document.getElementById('sim-pt2').innerText = t.simPt2;
+            document.getElementById('sim-pt3').innerText = t.simPt3;
+            
+            document.getElementById('footer-title').innerText = t.footerTitle;
+            document.getElementById('footer-desc').innerText = t.footerDesc;
+            document.getElementById('btn-tweet').innerText = t.btnTweet;
+            document.getElementById('btn-whatsapp').innerText = t.btnWhatsapp;
+            document.getElementById('btn-email-footer').innerText = t.btnEmailFooter;
+
+            // Chart Updates
+            if(protectionChart) {
+                protectionChart.data.labels = t.chartLabels.c1;
+                protectionChart.update();
+            }
+            if(waterChart) {
+                waterChart.data.datasets[0].label = t.chartLabels.c2;
+                waterChart.update();
+            }
+        }
+
+        // Toggle Event Listener
+        document.getElementById('langToggle').addEventListener('change', function() {
+            if(this.checked) {
+                updateUI('en');
+            } else {
+                updateUI('hi');
+            }
+        });
+
+        // --- CHART GENERATION ---
+        
+        // Chart 1: Protection Loss
+        const ctxProtection = document.getElementById('protectionChart').getContext('2d');
+        protectionChart = new Chart(ctxProtection, {
+            type: 'doughnut',
+            data: {
+                labels: content['hi'].chartLabels.c1,
+                datasets: [{
+                    data: [89.27, 10.73],
+                    backgroundColor: ['#ef4444', '#22c55e'], 
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { family: 'Mukta' } } }
+                }
+            }
+        });
+
+        // Chart 2: Water Crisis
+        const ctxWater = document.getElementById('waterChart').getContext('2d');
+        waterChart = new Chart(ctxWater, {
+            type: 'line',
+            data: {
+                labels: ['2025', '2027', '2029', '2031', '2033', '2035'],
+                datasets: [{
+                    label: content['hi'].chartLabels.c2,
+                    data: [30, 35, 42, 55, 70, 95],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#3b82f6'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        reverse: true,
+                        title: { display: true, text: 'Depth (m)' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // --- UTILITY ---
+        function scrollToEvidence() {
+            document.getElementById('evidence').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendEmail() {
+            const recipient = "supremecourt@nic.in, pmo@gov.in, mefcc@gov.in";
+            const subject = "URGENT: Review the '100m Definition' for Aravalli Hills";
+            // Keeping Email body in English as it's official correspondence
+            const body = `To the Honorable Chief Justice of India and MoEFCC,\n\nI am writing as a concerned citizen regarding the recent definition of Aravalli Hills.\n\nScientific analysis shows that 89.27% of the Aravalli range consists of hills smaller than 100m. These smaller hills are critical for stopping the Thar Desert and recharging groundwater.\n\nRemoving their protection will lead to irreversible ecological collapse. I urge you to reconsider the definition based on "Ecological Function" rather than just "Height".\n\nSincerely,\nA Concerned Citizen`;
+            window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    </script>
+</body>
+</html>
