@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>अरावली बचाओ - सुरक्षा कवच</title>
+    
+    <!-- 🔴 GOOGLE ANALYTICS START 🔴 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H073YLEKER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-H073YLEKER');
+    </script>
+    <!-- 🔴 GOOGLE ANALYTICS END 🔴 -->
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -65,7 +77,8 @@
             
             <p id="citizen-count" class="mt-8 text-sm text-gray-400 flex items-center justify-center gap-2">
                 <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
-                <span>12,450+ जागरूक नागरिक आज जुड़ चुके हैं।</span>
+                <!-- Yahan Static Number hi rahega frontend ke liye -->
+                <span><span id="live-counter">12,450</span>+ जागरूक नागरिक आज जुड़ चुके हैं।</span>
             </p>
         </div>
     </header>
@@ -75,7 +88,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-10">
                 <h3 id="video-title" class="text-3xl md:text-5xl font-bold text-white mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600 animate-pulse">
-                    AI द्वारा निर्मित भविष्य (2040)
+                    AI द्वारा निर्मित भविष्य (2035)
                 </h3>
                 <p id="video-desc" class="text-gray-400 max-w-2xl mx-auto text-lg">
                     देखिए यह विस्तृत वीडियो सिमुलेशन जो दिखाता है कि कैसे सुरक्षा हटने के बाद रेत के तूफान हमारे शहरों को ढक लेंगे।
@@ -84,12 +97,6 @@
 
             <!-- Video Player Container (Vimeo Embed) -->
             <div class="relative w-full max-w-4xl mx-auto aspect-video bg-gray-900 rounded-xl overflow-hidden border-2 border-gray-700 shadow-[0_0_50px_rgba(234,88,12,0.2)]">
-                
-                <!-- 
-                    🔴 VIMEO EMBED 🔴 
-                    Note: 'autoplay=1' enables autoplay, 'muted=1' is required for autoplay in most browsers.
-                    'loop=1' loops the video.
-                -->
                 <iframe 
                     src="https://player.vimeo.com/video/1147444451?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1&loop=1&muted=1" 
                     frameborder="0" 
@@ -97,7 +104,6 @@
                     class="absolute top-0 left-0 w-full h-full" 
                     title="Aravalli Impact Simulation">
                 </iframe>
-
             </div>
              <p id="video-note" class="text-center text-sm text-gray-500 mt-6 tracking-wider uppercase font-bold"><i class="fas fa-robot mr-2"></i>AI जनित विज़ुअलाइज़ेशन</p>
         </div>
@@ -216,6 +222,9 @@
 
     <script>
         // --- TRANSLATION LOGIC ---
+        let currentLang = 'hi';
+        let currentVisitorCount = 12450; // Default fallback
+
         const content = {
             hi: {
                 alert: '<i class="fas fa-exclamation-triangle mr-2"></i>गंभीर चेतावनी',
@@ -223,7 +232,7 @@
                 heroDesc: 'सुप्रीम कोर्ट की नई परिभाषा के कारण अरावली की <strong class="text-white">89% पहाड़ियों</strong> से सुरक्षा हट गई है। <br>अब थार रेगिस्तान को दिल्ली-NCR में घुसने से कोई नहीं रोक सकता।',
                 btnEmail: '<i class="fas fa-paper-plane mr-3"></i> सुप्रीम कोर्ट को ईमेल करें',
                 btnProof: '<i class="fas fa-chart-pie mr-3"></i> सबूत (Data) देखें',
-                citizenCount: '12,450+ जागरूक नागरिक आज जुड़ चुके हैं।',
+                citizenCountSuffix: 'जागरूक नागरिक आज जुड़ चुके हैं।',
                 evidenceTitle: 'वैज्ञानिक सच्चाई क्या है?',
                 evidenceDesc: 'हमने सैटेलाइट डेटा का उपयोग करके नई परिभाषा के असर का विश्लेषण किया। परिणाम भयानक हैं।',
                 chart1Title: '<i class="fas fa-mountain text-red-500 mr-2"></i> सुरक्षा हटी (Danger)',
@@ -239,7 +248,7 @@
                 simPt1: 'धूल भरी आंधियां बढ़ेंगी (PM 2.5)',
                 simPt2: 'वन्यजीवों का घर उजड़ जाएगा',
                 simPt3: 'तापमान में भारी बढ़ोतरी होगी',
-                videoTitle: 'AI द्वारा निर्मित भविष्य (2040)',
+                videoTitle: 'AI द्वारा निर्मित भविष्य (2035)',
                 videoDesc: 'देखिए यह विस्तृत वीडियो सिमुलेशन जो दिखाता है कि कैसे सुरक्षा हटने के बाद रेत के तूफान हमारे शहरों को ढक लेंगे।',
                 videoNote: '<i class="fas fa-robot mr-2"></i>AI जनित विज़ुअलाइज़ेशन',
                 footerTitle: 'दिल्ली को रेगिस्तान मत बनने दो',
@@ -258,7 +267,7 @@
                 heroDesc: 'The new "100m Definition" removes protection from <strong class="text-white">89% of Aravalli hills</strong>. <br>Without them, the Thar Desert enters Delhi-NCR.',
                 btnEmail: '<i class="fas fa-paper-plane mr-3"></i> Email Chief Justice Now',
                 btnProof: '<i class="fas fa-chart-pie mr-3"></i> See Data Proof',
-                citizenCount: '12,450+ citizens have joined the shield today.',
+                citizenCountSuffix: 'citizens have joined the shield today.',
                 evidenceTitle: 'The Scientific Reality',
                 evidenceDesc: 'We analyzed satellite topography data to simulate the impact of the Supreme Court\'s new definition. The results are catastrophic.',
                 chart1Title: '<i class="fas fa-mountain text-red-500 mr-2"></i> Protection Lost',
@@ -274,7 +283,7 @@
                 simPt1: 'Increased Dust Storms (PM 2.5)',
                 simPt2: 'Loss of Wildlife Corridors',
                 simPt3: 'Irreversible Temperature Rise',
-                videoTitle: 'AI Forecast: The 2040 Vision',
+                videoTitle: 'AI Forecast: The 2035 Vision',
                 videoDesc: 'Watch this detailed video simulation showing how sandstorms will engulf our cities after the protection is removed.',
                 videoNote: '<i class="fas fa-robot mr-2"></i>AI Generated Visualization',
                 footerTitle: "Don't Let Them Turn Delhi Into a Desert",
@@ -293,6 +302,7 @@
         let protectionChart, waterChart;
 
         function updateUI(lang) {
+            currentLang = lang;
             const t = content[lang];
             
             // Text Updates
@@ -301,7 +311,9 @@
             document.getElementById('hero-desc').innerHTML = t.heroDesc;
             document.getElementById('btn-email').innerHTML = t.btnEmail;
             document.getElementById('btn-proof').innerHTML = t.btnProof;
-            document.getElementById('citizen-count').innerHTML = ` <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span> <span>${t.citizenCount}</span>`;
+            
+            // Dynamic Visitor Count
+            document.getElementById('citizen-count').innerHTML = ` <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span> <span><span id="live-counter">${currentVisitorCount.toLocaleString()}</span>+ ${t.citizenCountSuffix}</span>`;
             
             document.getElementById('evidence-title').innerText = t.evidenceTitle;
             document.getElementById('evidence-desc').innerText = t.evidenceDesc;
@@ -357,15 +369,6 @@
         
         // Ensure Chart.js is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // Video Autoplay Safe-Check - REMOVED since we are using iframe now
-            // const video = document.getElementById('mainVideo');
-            // if(video) {
-            //     video.play().catch(error => {
-            //         console.log("Video autoplay prevented by browser policy (normal behavior):", error);
-            //         // No UI change needed, controls are visible
-            //     });
-            // }
 
             if (typeof Chart === 'undefined') {
                 console.error("Chart.js not loaded");
